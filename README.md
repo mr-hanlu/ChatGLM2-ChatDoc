@@ -7,6 +7,7 @@
 2. 对话没有存储功能，停止运行释放历史记录。需要保存，在chat_doc_more.py的addHistory函数中保存，有标记TODO
 3. 向量存储库可以设置存储路径。若文档名为英文，库名为文档名；若文档名为中文，库名为"china_"+文档名ASCII码用_连接。
 <img src="./image/demo.png" alt="demo" style="zoom:70%;" />
+
 ## 使用
 ### 下载模型
 1. 下载text2vec模型：https://huggingface.co/GanymedeNil/text2vec-large-chinese/tree/main ,放在text2vec/shibing624/目录下。项目链接：https://github.com/shibing624/text2vec
