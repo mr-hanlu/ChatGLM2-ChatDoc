@@ -1,0 +1,30 @@
+## ChatGLM2-6B 环境
+protobuf
+transformers==4.30.2
+cpm_kernels
+torch>=2.0
+gradio
+mdtex2html
+sentencepiece
+accelerate
+sse-starlette
+streamlit>=1.24.0
+
+## text2vec 环境
+jieba>=0.39
+loguru
+transformers>=4.6.0
+datasets
+tqdm
+scikit-learn
+gensim>=4.0.0
+pandas
+
+## 本项目环境
+langchain
+chromadb
+PyMuPDF
+requests
+numpy
+uuid
+fastapi
