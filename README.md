@@ -13,9 +13,11 @@
 1. 下载text2vec模型：https://huggingface.co/GanymedeNil/text2vec-large-chinese/tree/main ,放在text2vec/shibing624/目录下。项目链接：https://github.com/shibing624/text2vec
 2. 下载chatglm2-6b模型：https://huggingface.co/THUDM/chatglm2-6b/tree/main ，下载慢可以使用 https://cloud.tsinghua.edu.cn/d/674208019e314311ab5c/ 。命名 chatglm2_6b 放在chatglm2_doc_code/目录下。项目链接：https://github.com/THUDM/ChatGLM2-6B
 ### 配置环境
+
 ```python
 pip install -r requirements.txt
 ```
+
 ### 运行
 1. 将chatglm2_doc_code下的config.json、doc_api.py、modeling_chatglm_docs.py复制到chatglm2_6b目录下
 2. 运行doc_api.py启动chatglm2服务
