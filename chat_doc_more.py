@@ -4,7 +4,6 @@ import time
 import fitz
 from PIL import Image
 import numpy as np
-import cv2
 import requests
 import json
 from read_doc import chorma_loader
@@ -45,7 +44,7 @@ class ReadDocument():
             # 是中文，无法创建数据库名，用ASCII码转字符串
             if is_chinese:
                 # 数据库名称为3-63的字符串
-                collection_name = ("china_"+"_".join([str(ord(ch)) for ch in collection_name]))[0:62]
+                collection_name = ("china_" + "_".join([str(ord(ch)) for ch in collection_name]))[0:62]
             doc_type = file_name.split(".")[-1]
 
             # if file_name.split(".")[-1] == "pdf":
@@ -217,10 +216,11 @@ def changeBot(all_chat_name, history_dict_list, ischat):
         index = 1
     history_dict = history_dict_list[index]
     history = history_dict[all_chat_name]["history"]
+    system = history_dict[all_chat_name]["system"]
     chatbot = []
     for query, response in history:
         chatbot.append((read_doc.parse_text(query), read_doc.parse_text(response)))
-    return chatbot, history
+    return chatbot, history, system
 
 
 def addHistory(history, all_chat_name, history_dict_list, ischat, system):
@@ -344,7 +344,7 @@ with gr.Blocks() as demo:
         with gr.Column(scale=4) as chat_bot:
             chatbot = gr.Chatbot([], elem_id="chatbot", avatar_images=("./image/person.png", "./image/robot.png"))
             with gr.Accordion(label="model setting", open=False):
-                system = gr.Textbox(label="System message", lines=2, value="")
+                system = gr.Textbox(label="System message", lines=2, value="", interactive=True)
                 gr.Examples(examples=[
                     "假设你是一个读文档专家，我会给你几个文档做参考，我会给你一个问题，你需要根据这些文档，回答这个问题",
                     "假设你是一个资深程序员，我会问你一些代码相关的问题，你需要回答我的问题"], inputs=system)
@@ -378,7 +378,8 @@ with gr.Blocks() as demo:
         # 切换对话还是文档后改变历史记录和chatbot显示的记录
     ischat.change(fn=hide_doc, inputs=[ischat, history_dict_list], outputs=[doc_setting, all_chat_name])
     # 选择不同的对话，显示不同的bot
-    all_chat_name.change(fn=changeBot, inputs=[all_chat_name, history_dict_list, ischat], outputs=[chatbot, history])
+    all_chat_name.change(fn=changeBot, inputs=[all_chat_name, history_dict_list, ischat],
+                         outputs=[chatbot, history, system])
 
     # 上传文档，outputs定义了哪些组件会被这个函数的返回值更新
     btn_up.upload(fn=read_doc.choose_loader,

@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Extra, Field
 from langchain.embeddings.base import Embeddings
 
-from sentence_model import SentenceModel
+from text2vec.sentence_model import SentenceModel
 
 
 class MyEmbeddings(BaseModel, Embeddings):
