@@ -160,5 +160,5 @@ cython_debug/
 #.idea/
 
 /text2vec/shibing624
-/chatglm2_doc_code/chatglm2-6b
+/chatglm2_doc_code/chatglm2_6b
 **/chroma/
